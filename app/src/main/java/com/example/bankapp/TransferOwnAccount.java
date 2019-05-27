@@ -25,7 +25,8 @@ public class TransferOwnAccount extends AppCompatActivity {
     private Spinner accountFrom, accountTo;
     private EditText transferAmount;
     private FirebaseDatabase database;
-    ArrayList<BankAccount> accounts = new ArrayList<>();
+    static  ArrayList<BankAccount> accounts = new ArrayList<>();
+    ArrayAdapter<BankAccount> adapter;
 
 
     @Override
@@ -38,7 +39,7 @@ public class TransferOwnAccount extends AppCompatActivity {
     }
 
     public void transferMoney(View view) {
-        Log.d("grinern", "olool"+accountFrom.getSelectedItem().toString());
+        Log.d("test", "olool" + accountFrom.getSelectedItem().toString());
     }
 
     public void loadAccounts() {
@@ -50,13 +51,15 @@ public class TransferOwnAccount extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     DatabaseReference bankaccounts = database.getReference("bankaccounts/" + data.getKey());
-                    Log.d("grinern", data.getKey());
+                    Log.d("test", data.getKey());
                     bankaccounts.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             BankAccount bankAccount = dataSnapshot.getValue(BankAccount.class);
                             accounts.add(bankAccount);
-                            Log.d("grinern", ""+accounts);
+                            adapter.notifyDataSetChanged();
+
+                            Log.d("test", "" + accounts);
                         }
 
                         @Override
@@ -65,11 +68,9 @@ public class TransferOwnAccount extends AppCompatActivity {
                         }
                     });
                 }
-                Log.d("grinern", ""+accounts);
+                Log.d("test", "" + accounts);
 
-                ArrayAdapter<BankAccount> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, accounts);
-                accountFrom.setAdapter(adapter);
-                accountTo.setAdapter(adapter);
+
                 adapter.notifyDataSetChanged();
 
 
@@ -84,10 +85,13 @@ public class TransferOwnAccount extends AppCompatActivity {
     }
 
     public void init() {
+        this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, accounts);
         this.accountFrom = findViewById(R.id.transferFromSpinner);
         this.accountTo = findViewById(R.id.transferToSpinner);
         this.transferAmount = findViewById(R.id.transferAmount);
         this.database = FirebaseDatabase.getInstance();
+        this.accountFrom.setAdapter(adapter);
+        this.accountTo.setAdapter(adapter);
 
     }
 }
