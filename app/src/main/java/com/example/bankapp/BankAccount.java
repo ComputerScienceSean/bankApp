@@ -47,6 +47,6 @@ public class BankAccount {
 
     @Override
     public String toString() {
-        return title + "--- " +accNumber + "  " + balance ;
+        return accNumber;
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".activities.TransferOwnAccount">
+    tools:context=".TransferOwnAccount">
 
     <Button
         android:id="@+id/transferButton"
@@ -91,8 +91,10 @@
         android:layout_width="382dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
+        android:dropDownSelector="@android:color/white"
         android:spinnerMode="dropdown"
         android:visibility="visible"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +106,7 @@
         android:layout_width="374dp"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

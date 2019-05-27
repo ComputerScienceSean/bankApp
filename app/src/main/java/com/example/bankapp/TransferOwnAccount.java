@@ -40,6 +40,30 @@ public class TransferOwnAccount extends AppCompatActivity {
 
     public void transferMoney(View view) {
         Log.d("test", "olool" + accountFrom.getSelectedItem().toString());
+
+        DatabaseReference takeFrom = database.getReference("bankaccounts/" + accountFrom.getSelectedItem().toString());
+        DatabaseReference giveTo = database.getReference("bankaccounts/" + accountTo.getSelectedItem().toString());
+
+        takeFrom.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dataSnapshot.getChildren();
+                dataSnapshot.child("balance");
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        takeFrom.setValue(transferAmount);
+        giveTo.setValue(transferAmount);
+
+        Intent returnToMenu = new Intent(getApplicationContext(), AccountMenu.class);
+        startActivity(returnToMenu);
+
     }
 
     public void loadAccounts() {
@@ -69,11 +93,7 @@ public class TransferOwnAccount extends AppCompatActivity {
                     });
                 }
                 Log.d("test", "" + accounts);
-
-
                 adapter.notifyDataSetChanged();
-
-
             }
 
             @Override
@@ -85,7 +105,7 @@ public class TransferOwnAccount extends AppCompatActivity {
     }
 
     public void init() {
-        this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, accounts);
+        this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, accounts);
         this.accountFrom = findViewById(R.id.transferFromSpinner);
         this.accountTo = findViewById(R.id.transferToSpinner);
         this.transferAmount = findViewById(R.id.transferAmount);
