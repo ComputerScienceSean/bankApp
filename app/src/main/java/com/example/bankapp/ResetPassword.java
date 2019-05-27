@@ -23,6 +23,11 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
         init();
+
+        if (savedInstanceState != null){
+            password.setText(savedInstanceState.getString("password"));
+            passwordConfirm.setText(savedInstanceState.getString("passwordConfirm"));
+        }
     }
 
     public void updatePassword(View view){
@@ -43,6 +48,13 @@ public class ResetPassword extends AppCompatActivity {
         this.password = findViewById(R.id.newPass);
         this.passwordConfirm = findViewById(R.id.newPassConfirm);
         this.database = FirebaseDatabase.getInstance();
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("password", password.getText().toString());
+        outState.putString("passwordConfirm", passwordConfirm.getText().toString());
     }
 }

@@ -69,12 +69,12 @@
 
     <EditText
         android:id="@+id/transferAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="238dp"
+        android:layout_height="47dp"
         android:layout_marginTop="99dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/choose_amount"
+        android:hint="@string/choose_transfer_amount"
         android:inputType="number|textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"

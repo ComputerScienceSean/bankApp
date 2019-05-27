@@ -89,6 +89,5 @@ public class TransferOwnAccount extends AppCompatActivity {
         this.transferAmount = findViewById(R.id.transferAmount);
         this.database = FirebaseDatabase.getInstance();
 
-
     }
 }
