@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">BankApp</string>
+    <string name="bank_application">Bank Application</string>
+    <string name="login">Login</string>
+    <string name="cpr_number">CPR-Number</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="register_a_new_user">Register a new user</string>
+    <string name="firstname">Firstname</string>
+    <string name="welcome_to_the_bank_below_you_will_find_information_needed_to_sign_up_please_fill_out_every_field">Welcome to the bank. below you will find information needed to sign up. Please fill out every field!</string>
+    <string name="lastname">Lastname</string>
+    <string name="address">Address</string>
+    <string name="phonenumber">Phonenumber</string>
+    <string name="email">Email</string>
+    <string name="transfer_to_someone_else_account">Transfer to someone else account</string>
+    <string name="choose_your_desired_action">Choose your desired action</string>
+    <string name="pay_bills">Pay bills</string>
+    <string name="reset_password">Reset password</string>
+    <string name="transfer_between_my_accounts">Transfer between my accounts</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="view_accounts">View accounts</string>
+    <string name="account_name">Account Name</string>
+    <string name="accounts">Accounts:</string>
+    <string name="transfer">Transfer</string>
+    <string name="transfer_money">Transfer money</string>
+    <string name="choose_amount">Choose amount</string>
+    <string name="transfer_from">Transfer from:</string>
+    <string name="transfer_to">Transfer to:</string>
+    <string name="account_number">Account number</string>
+    <string name="re_enter_password">Re-enter password</string>
+    <string name="new_password">New password</string>
+    <string name="approve">Approve</string>
+    <string name="approve_transaction">Approve Transaction</string>
+    <string name="below_you_will_find_your_approval_id_which_you_will_need_to_enter_in_the_box_below">Below you will find your Approval ID which you will need to enter in the box below</string>
+    <string name="approval_id">Approval ID</string>
+</resources>
