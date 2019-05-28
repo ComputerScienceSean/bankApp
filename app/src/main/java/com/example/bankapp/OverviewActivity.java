@@ -49,7 +49,7 @@ public class OverviewActivity extends AppCompatActivity {
 
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
 
-                    final DatabaseReference bankAccounts = database.getReference("bankaccounts/" + data.getKey());
+                    DatabaseReference bankAccounts = database.getReference("bankaccounts/" + data.getKey());
                     Log.d("OVERVIEW", "key " + data.getKey());
                     Log.d("OVERVIEW", "value " + data.getValue());
                     bankAccounts.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.bankapp.BankAccount;
 import com.example.bankapp.R;
@@ -25,9 +26,10 @@ public class TransferOwnAccount extends AppCompatActivity {
     private Spinner accountFrom, accountTo;
     private EditText transferAmount;
     private FirebaseDatabase database;
-    static  ArrayList<BankAccount> accounts = new ArrayList<>();
+    static ArrayList<BankAccount> accounts = new ArrayList<>();
     ArrayAdapter<BankAccount> adapter;
 
+    public static final String TAG = "TRANSFEROWNACCOUNT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +40,28 @@ public class TransferOwnAccount extends AppCompatActivity {
 
     }
 
-    public void transferMoney(View view) {
-        Log.d("test", "olool" + accountFrom.getSelectedItem().toString());
 
-        DatabaseReference takeFrom = database.getReference("bankaccounts/" + accountFrom.getSelectedItem().toString());
-        DatabaseReference giveTo = database.getReference("bankaccounts/" + accountTo.getSelectedItem().toString());
+    public void transfer( String accountNumber,  Double amount,  Boolean add) {
+        DatabaseReference dbref = database.getReference("bankaccounts");
 
-        takeFrom.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        dbref.child(accountNumber).child("balance").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                dataSnapshot.getChildren();
-                dataSnapshot.child("balance");
+                if (dataSnapshot.getValue() != null) {
+                    Double t = dataSnapshot.getValue(Double.class);
+                    if (amount > t) {
+                        Toast.makeText(getApplicationContext(), "You dont have enough money to do that!", Toast.LENGTH_LONG).show();
+                    } else {
 
+                        if (add) {
+                            dbref.child(accountNumber).child("balance").setValue((t + amount));
+                        } else {
+                            dbref.child(accountNumber).child("balance").setValue((t - amount));
+                        }
+
+                    }
+                }
             }
 
             @Override
@@ -58,15 +70,46 @@ public class TransferOwnAccount extends AppCompatActivity {
             }
         });
 
-        takeFrom.setValue(transferAmount);
-        giveTo.setValue(transferAmount);
-
-        Intent returnToMenu = new Intent(getApplicationContext(), AccountMenu.class);
-        startActivity(returnToMenu);
 
     }
 
-    public void loadAccounts() {
+
+    public void transferMoney(View view) {
+        Double amount = Double.parseDouble(transferAmount.getText().toString());
+
+        String accFrom = accountFrom.getSelectedItem().toString().substring(accountFrom.getSelectedItem().toString().lastIndexOf(" " ) + 1);
+        String accTo = accountTo.getSelectedItem().toString().substring(accountTo.getSelectedItem().toString().lastIndexOf(" ") + 1);
+
+        Log.d(TAG, "*" + accFrom + "*");
+
+
+        if (!accountFrom.getSelectedItem().toString().equals(accountTo.getSelectedItem().toString())) {
+            transfer(accFrom, amount, false);
+            transfer(accTo, amount, true);
+
+            Intent returnToMenu = new Intent(getApplicationContext(), AccountMenu.class);
+            startActivity(returnToMenu);
+        } else {
+            Toast.makeText(getApplicationContext(), "You can't transfer money between the same account", Toast.LENGTH_LONG).show();
+        }
+
+
+
+
+
+    }
+    public void init () {
+        this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, accounts);
+        this.accountFrom = findViewById(R.id.transferFromSpinner);
+        this.accountTo = findViewById(R.id.transferToSpinner);
+        this.transferAmount = findViewById(R.id.transferAmount);
+        this.database = FirebaseDatabase.getInstance();
+        this.accountFrom.setAdapter(adapter);
+        this.accountTo.setAdapter(adapter);
+
+    }
+
+    public void loadAccounts () {
         Intent getIntent = getIntent();
         String userCPR = getIntent.getStringExtra("CPR");
         DatabaseReference dbref = database.getReference("usersbankaccounts/" + userCPR);
@@ -101,17 +144,6 @@ public class TransferOwnAccount extends AppCompatActivity {
 
             }
         });
-
-    }
-
-    public void init() {
-        this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, accounts);
-        this.accountFrom = findViewById(R.id.transferFromSpinner);
-        this.accountTo = findViewById(R.id.transferToSpinner);
-        this.transferAmount = findViewById(R.id.transferAmount);
-        this.database = FirebaseDatabase.getInstance();
-        this.accountFrom.setAdapter(adapter);
-        this.accountTo.setAdapter(adapter);
 
     }
 }
