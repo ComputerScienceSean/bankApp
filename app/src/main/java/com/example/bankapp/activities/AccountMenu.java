@@ -39,6 +39,7 @@ public class AccountMenu extends AppCompatActivity {
 
     public void setTransferOtherAccButton(View view){
         Intent setTransferOtherAccButton = new Intent(getApplicationContext(), TransferOtherAccount.class);
+        setTransferOtherAccButton.putExtra("CPR", userCPR);
         startActivity(setTransferOtherAccButton);
     }
 

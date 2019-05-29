@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.bankapp.R;
 import com.example.bankapp.entities.BankAccount;
+import com.example.bankapp.entities.EasyIdDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,15 +22,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-public class TransferOtherAccount extends AppCompatActivity {
+public class TransferOtherAccount extends AppCompatActivity implements EasyIdDialog.DialogListener {
 
 
     private Spinner accountFrom;
     private EditText transferAmount, accountTo;
     private FirebaseDatabase database;
+    private Button transferButton;
     static ArrayList<BankAccount> accounts = new ArrayList<>();
     ArrayAdapter<BankAccount> adapter;
+    private int shownRandomId;
+    private int enteredeRandomId;
 
     public static final String TAG = "TRANSFEROTHERACCOUNT";
 
@@ -38,15 +45,15 @@ public class TransferOtherAccount extends AppCompatActivity {
         setContentView(R.layout.activity_transfer_other_account);
         init();
         loadAccounts();
+
     }
 
 
 
     public void transfer( String accountNumber,  Double amount,  Boolean add) {
         DatabaseReference dbref = database.getReference("bankaccounts");
-
-
         dbref.child(accountNumber).child("balance").addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
@@ -56,6 +63,7 @@ public class TransferOtherAccount extends AppCompatActivity {
                     } else {
 
                         if (add) {
+
                             dbref.child(accountNumber).child("balance").setValue((temp + amount));
                         } else {
                             dbref.child(accountNumber).child("balance").setValue((temp - amount));
@@ -74,14 +82,13 @@ public class TransferOtherAccount extends AppCompatActivity {
     }
 
 
-    public void transferMoney(View view) {
+    public void transferMoney() {
         Double amount = Double.parseDouble(transferAmount.getText().toString());
 
         String accFrom = accountFrom.getSelectedItem().toString().substring(accountFrom.getSelectedItem().toString().lastIndexOf(" " ) + 1);
         String accTo = accountTo.getText().toString();
 
         Log.d(TAG, "*" + accFrom + "*");
-
 
         if (!accountFrom.getSelectedItem().toString().equals(accountTo.toString())) {
             transfer(accFrom, amount, false);
@@ -102,6 +109,13 @@ public class TransferOtherAccount extends AppCompatActivity {
         this.transferAmount = findViewById(R.id.transferAmount);
         this.database = FirebaseDatabase.getInstance();
         this.accountFrom.setAdapter(adapter);
+        this.transferButton = findViewById(R.id.transferOtherAccButton3);
+    }
+
+    public void openDialog(View view){
+        EasyIdDialog easyIdDialog = new EasyIdDialog();
+        easyIdDialog.show(getSupportFragmentManager(), "easyID Dialog");
+        transferMoney();
     }
 
 
@@ -123,7 +137,7 @@ public class TransferOtherAccount extends AppCompatActivity {
                             accounts.add(bankAccount);
                             adapter.notifyDataSetChanged();
 
-                            Log.d("test", "" + accounts);
+                            Log.d("test", "fdfd" + accounts);
                         }
 
                         @Override
@@ -141,6 +155,11 @@ public class TransferOtherAccount extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    public void applyText(int showRandomId, int enteredRandomId) {
+        shownRandomId = showRandomId;
+        enteredeRandomId = enteredRandomId;
     }
 }
