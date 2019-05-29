@@ -24,8 +24,8 @@ import java.util.ArrayList;
 public class TransferOtherAccount extends AppCompatActivity {
 
 
-    private Spinner accountFrom, accountTo;
-    private EditText transferAmount;
+    private Spinner accountFrom;
+    private EditText transferAmount, accountTo;
     private FirebaseDatabase database;
     static ArrayList<BankAccount> accounts = new ArrayList<>();
     ArrayAdapter<BankAccount> adapter;
@@ -50,17 +50,16 @@ public class TransferOtherAccount extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
-                    Double t = dataSnapshot.getValue(Double.class);
-                    if (amount > t) {
+                    Double temp = dataSnapshot.getValue(Double.class);
+                    if (amount > temp) {
                         Toast.makeText(getApplicationContext(), "You dont have enough money to do that!", Toast.LENGTH_LONG).show();
                     } else {
 
                         if (add) {
-                            dbref.child(accountNumber).child("balance").setValue((t + amount));
+                            dbref.child(accountNumber).child("balance").setValue((temp + amount));
                         } else {
-                            dbref.child(accountNumber).child("balance").setValue((t - amount));
+                            dbref.child(accountNumber).child("balance").setValue((temp - amount));
                         }
-
                     }
                 }
             }
@@ -79,12 +78,12 @@ public class TransferOtherAccount extends AppCompatActivity {
         Double amount = Double.parseDouble(transferAmount.getText().toString());
 
         String accFrom = accountFrom.getSelectedItem().toString().substring(accountFrom.getSelectedItem().toString().lastIndexOf(" " ) + 1);
-        String accTo = accountTo.getSelectedItem().toString().substring(accountTo.getSelectedItem().toString().lastIndexOf(" ") + 1);
+        String accTo = accountTo.getText().toString();
 
         Log.d(TAG, "*" + accFrom + "*");
 
 
-        if (!accountFrom.getSelectedItem().toString().equals(accountTo.getSelectedItem().toString())) {
+        if (!accountFrom.getSelectedItem().toString().equals(accountTo.toString())) {
             transfer(accFrom, amount, false);
             transfer(accTo, amount, true);
 
@@ -93,22 +92,19 @@ public class TransferOtherAccount extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "You can't transfer money between the same account", Toast.LENGTH_LONG).show();
         }
-
-
-
-
-
     }
+
+
     public void init () {
         this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, accounts);
         this.accountFrom = findViewById(R.id.transferFromSpinner);
-        this.accountTo = findViewById(R.id.transferToSpinner);
+        this.accountTo = findViewById(R.id.accountnumberRecipient);
         this.transferAmount = findViewById(R.id.transferAmount);
         this.database = FirebaseDatabase.getInstance();
         this.accountFrom.setAdapter(adapter);
-        this.accountTo.setAdapter(adapter);
-
     }
+
+
 
     public void loadAccounts () {
         Intent getIntent = getIntent();

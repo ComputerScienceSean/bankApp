@@ -69,8 +69,6 @@ public class TransferOwnAccount extends AppCompatActivity {
 
             }
         });
-
-
     }
 
 
@@ -92,12 +90,9 @@ public class TransferOwnAccount extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "You can't transfer money between the same account", Toast.LENGTH_LONG).show();
         }
-
-
-
-
-
     }
+
+
     public void init () {
         this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, accounts);
         this.accountFrom = findViewById(R.id.transferFromSpinner);
@@ -106,8 +101,9 @@ public class TransferOwnAccount extends AppCompatActivity {
         this.database = FirebaseDatabase.getInstance();
         this.accountFrom.setAdapter(adapter);
         this.accountTo.setAdapter(adapter);
-
     }
+
+
 
     public void loadAccounts () {
         Intent getIntent = getIntent();
@@ -144,6 +140,5 @@ public class TransferOwnAccount extends AppCompatActivity {
 
             }
         });
-
     }
 }
