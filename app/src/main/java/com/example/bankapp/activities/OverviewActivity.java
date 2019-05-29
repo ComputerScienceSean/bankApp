@@ -1,4 +1,4 @@
-package com.example.bankapp;
+package com.example.bankapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.bankapp.entities.BankAccount;
+import com.example.bankapp.entities.OverviewAdapter;
+import com.example.bankapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -1,4 +1,4 @@
-package com.example.bankapp;
+package com.example.bankapp.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

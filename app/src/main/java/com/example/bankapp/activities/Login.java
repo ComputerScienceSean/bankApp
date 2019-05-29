@@ -1,4 +1,4 @@
-package com.example.bankapp;
+package com.example.bankapp.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;

@@ -9,14 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ResetPassword"></activity>
-        <activity android:name=".TransferOtherAccount" />
-        <activity android:name=".TransferOwnAccount" />
-        <activity android:name=".AccountMenu" />
-        <activity android:name=".RegisterUser"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".OverviewActivity"/>
-        <activity android:name=".Login"
+        <activity android:name=".activities.ShowAccount"></activity>
+        <activity android:name=".activities.ResetPassword" />
+        <activity android:name=".activities.TransferOtherAccount" />
+        <activity android:name=".activities.TransferOwnAccount" />
+        <activity android:name=".activities.AccountMenu" />
+        <activity
+            android:name=".activities.RegisterUser"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.OverviewActivity" />
+        <activity
+            android:name=".activities.Login"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>

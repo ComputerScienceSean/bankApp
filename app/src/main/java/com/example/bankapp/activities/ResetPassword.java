@@ -1,4 +1,4 @@
-package com.example.bankapp;
+package com.example.bankapp.activities;
 
 
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.bankapp.R;
-import com.example.bankapp.AccountMenu;
+import com.example.bankapp.activities.AccountMenu;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

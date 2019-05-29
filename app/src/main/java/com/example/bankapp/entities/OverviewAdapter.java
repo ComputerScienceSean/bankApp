@@ -1,6 +1,7 @@
-package com.example.bankapp;
+package com.example.bankapp.entities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.bankapp.R;
+import com.example.bankapp.activities.ShowAccount;
 
 import java.util.List;
 
@@ -36,6 +40,11 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.myView
         myViewHolder.accountName.setText(mData.get(i).getTitle());
         myViewHolder.accountNo.setText(""+ mData.get(i).getAccNumber());
         myViewHolder.accountBal.setText("" + mData.get(i).getBalance());
+        myViewHolder.cv_cardItem.setOnClickListener((View) -> {
+            Intent accessAccount = new Intent(mContext, ShowAccount.class);
+            accessAccount.putExtra("Account", mData.get(i));
+            mContext.startActivity(accessAccount);
+        });
 
 
     }
