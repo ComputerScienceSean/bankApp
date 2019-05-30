@@ -23,6 +23,8 @@ public class EasyIdDialog extends AppCompatDialogFragment {
 
     private TextView showRandomId;
     private EditText enteredRandomId;
+    private DialogListener listener;
+
 
     @Override
     public void onAttach(Context context) {
@@ -34,8 +36,6 @@ public class EasyIdDialog extends AppCompatDialogFragment {
             throw new ClassCastException(context.toString() + "must implement DialogListenere");
         }
     }
-
-    private DialogListener listener;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

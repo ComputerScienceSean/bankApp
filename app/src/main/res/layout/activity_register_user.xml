@@ -10,8 +10,8 @@
     <Button
         android:id="@+id/registerButton"
         style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-        android:layout_width="83dp"
-        android:layout_height="54dp"
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/contrast_background"
