@@ -77,7 +77,7 @@ public class RegisterUser extends AppCompatActivity {
                                         Log.d(TAG, "user nextvalue called"+next);
 
                                         Long nextAccNumber = Long.parseLong(next);
-                                        nextNumber.setValue("" + (nextAccNumber + 3));
+                                        nextNumber.setValue("" + (nextAccNumber + 2));
                                         Log.d(TAG, "user "+ nextAccNumber);
 
 
@@ -119,15 +119,14 @@ public class RegisterUser extends AppCompatActivity {
         DatabaseReference ref = database.getReference("bankaccounts/");
         BankAccount defaultAccount = new BankAccount("Default", 0, "" + (nextNumber + 1));
         BankAccount budgetAccount = new BankAccount("Budget", 0, "" + (nextNumber + 2));
-        BankAccount pensionAccount = new BankAccount("Pension", 0, "" + (nextNumber + 3));
+
         ref.child("" + (nextNumber + 1)).setValue(defaultAccount);
         ref.child("" + (nextNumber + 2)).setValue(budgetAccount);
-        ref.child("" + (nextNumber + 3)).setValue(pensionAccount);
 
         DatabaseReference userRef = database.getReference("usersbankaccounts/" + cpr);
         userRef.child("" + (nextNumber + 1)).setValue("Default Account");
         userRef.child("" + (nextNumber + 2)).setValue("Budget Account");
-        userRef.child("" + (nextNumber + 3)).setValue("Pension Account");
+
 
     }
 
