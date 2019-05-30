@@ -1,6 +1,7 @@
 package com.example.bankapp.activities;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class CreateAccount extends AppCompatActivity {
     private FirebaseDatabase database;
     private Spinner accountToBeCreated;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +42,8 @@ public class CreateAccount extends AppCompatActivity {
         accounts.add("Savings Account");
         accounts.add("Business Account");
         accounts.add("Pension Account");
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, accounts);
+
         accountToBeCreated.setAdapter(adapter);
     }
 
@@ -53,20 +55,36 @@ public class CreateAccount extends AppCompatActivity {
 
     private void createAccounts(String next, String cpr) {
 
-            // If statement that checks if you already have created such an account
-     //   if (accountToBeCreated.getSelectedItem().toString().equals()) {
-            Long nextNumber = Long.parseLong(next);
-            Log.d(TAG, "create accounts called"+ next +"    " + cpr);
-            DatabaseReference ref = database.getReference("bankaccounts/");
 
-            BankAccount createdAccont = new BankAccount(accountToBeCreated.getSelectedItem().toString(), 100, "" + (nextNumber + 1));
-            ref.child("" + (nextNumber + 1)).setValue(createdAccont);
+        //Some problem with the if statement, dont know why
+        DatabaseReference checkSpinner = database.getReference("userbankaccounts/" + cpr);
+        checkSpinner.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    if (!data.child(accountToBeCreated.getSelectedItem().toString().trim()).exists()){
 
-            DatabaseReference userRef = database.getReference("usersbankaccounts/" + cpr);
-            userRef.child("" + (nextNumber + 1)).setValue(accountToBeCreated.getSelectedItem().toString());
-     //   }
+                        Long nextNumber = Long.parseLong(next);
+                        Log.d(TAG, "create accounts called"+ next +"    " + cpr);
+                        DatabaseReference ref = database.getReference("bankaccounts/");
 
+                        BankAccount createdAccont = new BankAccount(accountToBeCreated.getSelectedItem().toString(), 100, "" + (nextNumber + 1));
+                        ref.child("" + (nextNumber + 1)).setValue(createdAccont);
 
+                        DatabaseReference userRef = database.getReference("usersbankaccounts/" + cpr);
+                        userRef.child("" + (nextNumber + 1)).setValue(accountToBeCreated.getSelectedItem().toString());
+                        Toast.makeText(getApplicationContext(), accountToBeCreated.getSelectedItem().toString() + " created!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "You already have a " + accountToBeCreated.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void getNextNumber(){
@@ -92,7 +110,6 @@ public class CreateAccount extends AppCompatActivity {
 
     public void createAccountButton(View view){
         getNextNumber();
-        Toast.makeText(getApplicationContext(), accountToBeCreated.getSelectedItem().toString() + "created!", Toast.LENGTH_LONG).show();
 
         Intent returnToMenu = new Intent(getApplicationContext(), AccountMenu.class);
         startActivity(returnToMenu);

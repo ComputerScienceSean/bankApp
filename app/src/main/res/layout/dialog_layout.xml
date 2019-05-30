@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Easy ID"
+        android:text="@string/easy_id"
         android:textColor="#F9FAF9"
         android:textSize="24sp"
         app:fontFamily="serif"
@@ -26,17 +26,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:hint="@string/easy_id"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/randomID" />
+        app:layout_constraintTop_toBottomOf="@+id/randomID"
+        android:autofillHints="" tools:targetApi="o"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="308dp"
         android:layout_height="69dp"
         android:layout_marginTop="19dp"
-        android:text="Please enter the code below to confirm you want to transfer the money to an external bank account:"
+        android:text="@string/please_enter_the_code_below_to_confirm_you_want_to_transfer_the_money_to_an_external_bank_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

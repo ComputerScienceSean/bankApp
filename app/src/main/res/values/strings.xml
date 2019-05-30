@@ -36,4 +36,9 @@
     <string name="choose_transfer_amount">Choose transfer amount</string>
     <string name="your_balance">Your balance</string>
     <string name="enter_account_number_of_recipient">Enter account number of recipient</string>
+    <string name="create_account">create account</string>
+    <string name="what_kind_of_account_would_you_like_to_create">What kind of account would you like to create?</string>
+    <string name="go_back">go back</string>
+    <string name="easy_id">Easy ID</string>
+    <string name="please_enter_the_code_below_to_confirm_you_want_to_transfer_the_money_to_an_external_bank_account">Please enter the code below to confirm you want to transfer the money to an external bank account:</string>
 </resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activities.CreateAccount">
+
+    <Button
+        android:id="@+id/createAccountButton"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/contrast_background"
+        android:onClick="createAccountButton"
+        android:text="@string/create_account"
+        android:textColor="#FFFFFF"
+        android:typeface="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountToBeCreated"
+        tools:targetApi="lollipop" />
+
+    <Spinner
+        android:id="@+id/accountToBeCreated"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="382dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="62dp"
+        android:dropDownSelector="@android:color/white"
+        android:spinnerMode="dropdown"
+        android:textColor="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountOverviewTitle3" />
+
+    <TextView
+        android:id="@+id/accountOverviewTitle3"
+        android:layout_width="343dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/what_kind_of_account_would_you_like_to_create"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAccountTitle" />
+
+    <TextView
+        android:id="@+id/createAccountTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/create_a_new_account"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
