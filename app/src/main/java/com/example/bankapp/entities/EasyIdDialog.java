@@ -45,7 +45,7 @@ public class EasyIdDialog extends AppCompatDialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        LayoutInflater inflater =  Objects.requireNonNull(getActivity()).getLayoutInflater();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_layout, null);
         init(view);
 
@@ -54,34 +54,5 @@ public class EasyIdDialog extends AppCompatDialogFragment {
         List<Integer> easyIdList = new ArrayList<>();
 
         for (int i = 0; i <= 100; i++) {
-            easyIdList.add(rnd.nextInt(999));
-        }
-        Log.d("TAG", ""+ easyIdList.get(rnd.nextInt(100)));
-        showRandomId.setText(easyIdList.get(rnd.nextInt(100)));
-        listener.applyText(Integer.parseInt(showRandomId.getText().toString()), Integer.parseInt(enteredRandomId.getText().toString()));
-
-        builder.setView(view)
-
-                .setNegativeButton("Cancel", ((DialogInterface dialog, int which) -> {
-
-                }))
-                .setPositiveButton("OK", ((DialogInterface dialog, int which) -> {
-
-                        Intent returnToMenu = new Intent(getContext(), AccountMenu.class);
-                        startActivity(returnToMenu);
-                }));
-
-
-
-        return builder.create();
-    }
-
-    public void init(View view){
-        this.showRandomId = view.findViewById(R.id.randomID);
-        this.enteredRandomId = view.findViewById(R.id.enteredRandomId);
-    }
-
-    public interface DialogListener{
-        void applyText(int showRandomId, int enteredRandomId);
-    }
-}
+            easyIdList.add(rnd.nextInt(9999));
+        }t

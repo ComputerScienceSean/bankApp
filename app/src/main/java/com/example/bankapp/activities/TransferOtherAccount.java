@@ -114,7 +114,6 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
     public void openDialog(View view){
         EasyIdDialog easyIdDialog = new EasyIdDialog();
         easyIdDialog.show(getSupportFragmentManager(), "easyID Dialog");
-        transferMoney();
     }
 
 
