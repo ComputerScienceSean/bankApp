@@ -42,22 +42,23 @@ public class TransferOwnAccount extends AppCompatActivity {
 
 
     public void transfer( String accountNumber,  Double amount,  Boolean add) {
+
+
+
         DatabaseReference dbref = database.getReference("bankaccounts");
-
-
         dbref.child(accountNumber).child("balance").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
-                    Double t = dataSnapshot.getValue(Double.class);
-                    if (amount > t) {
+                    Double temp = dataSnapshot.getValue(Double.class);
+                    if (amount > temp) {
                         Toast.makeText(getApplicationContext(), "You dont have enough money to do that!", Toast.LENGTH_LONG).show();
                     } else {
 
                         if (add) {
-                            dbref.child(accountNumber).child("balance").setValue((t + amount));
+                            dbref.child(accountNumber).child("balance").setValue((temp + amount));
                         } else {
-                            dbref.child(accountNumber).child("balance").setValue((t - amount));
+                            dbref.child(accountNumber).child("balance").setValue((temp - amount));
                         }
 
                     }
@@ -73,6 +74,11 @@ public class TransferOwnAccount extends AppCompatActivity {
 
 
     public void transferMoney(View view) {
+
+        if (transferAmount.getText().toString().length() < 1){
+            Toast.makeText(getApplicationContext(), "Invalid amount to transfer entered. Try again!", Toast.LENGTH_LONG).show();
+            return;
+        }
         Double amount = Double.parseDouble(transferAmount.getText().toString());
 
         String accFrom = accountFrom.getSelectedItem().toString().substring(accountFrom.getSelectedItem().toString().lastIndexOf(" " ) + 1);

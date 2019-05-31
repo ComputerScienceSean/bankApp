@@ -4,14 +4,17 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.bankapp.R;
+import com.example.bankapp.activities.AccountMenu;
 import com.example.bankapp.activities.TransferOtherAccount;
 
 import java.util.ArrayList;
@@ -33,7 +36,7 @@ public class EasyIdDialog extends AppCompatDialogFragment {
         try {
             listener = (DialogListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "must implement DialogListenere");
+            throw new ClassCastException(context.toString() + "must implement DialogListener");
         }
     }
 
@@ -46,25 +49,26 @@ public class EasyIdDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.dialog_layout, null);
         init(view);
 
+
+        Random rnd = new Random();
+        List<Integer> easyIdList = new ArrayList<>();
+
+        for (int i = 0; i <= 100; i++) {
+            easyIdList.add(rnd.nextInt(999));
+        }
+        Log.d("TAG", ""+ easyIdList.get(rnd.nextInt(100)));
+        showRandomId.setText(easyIdList.get(rnd.nextInt(100)));
+        listener.applyText(Integer.parseInt(showRandomId.getText().toString()), Integer.parseInt(enteredRandomId.getText().toString()));
+
         builder.setView(view)
-                .setTitle("Easy ID")
+
                 .setNegativeButton("Cancel", ((DialogInterface dialog, int which) -> {
 
                 }))
                 .setPositiveButton("OK", ((DialogInterface dialog, int which) -> {
 
-                        String randomId = showRandomId.getText().toString();
-                        String enteredId = enteredRandomId.getText().toString();
-                        Random rnd = new Random();
-                        List<Integer> easyIdList = new ArrayList<>();
-
-                        for (int i = 0; i <= 100; i++){
-                            easyIdList.add(rnd.nextInt(999));
-
-
-                        showRandomId.setText(easyIdList.get(rnd.nextInt(100)));
-                        listener.applyText(Integer.parseInt(showRandomId.getText().toString()), Integer.parseInt(enteredId));
-                    }
+                        Intent returnToMenu = new Intent(getContext(), AccountMenu.class);
+                        startActivity(returnToMenu);
                 }));
 
 

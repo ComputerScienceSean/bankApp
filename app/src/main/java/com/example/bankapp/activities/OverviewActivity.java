@@ -53,17 +53,17 @@ public class OverviewActivity extends AppCompatActivity {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
 
                     DatabaseReference bankAccounts = database.getReference("bankaccounts/" + data.getKey());
-                    Log.d("OVERVIEW", "key " + data.getKey());
-                    Log.d("OVERVIEW", "value " + data.getValue());
+                    Log.d(TAG, "key " + data.getKey());
+                    Log.d(TAG, "value " + data.getValue());
                     bankAccounts.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Log.d("OVERVIEW", "asdasdas" + dataSnapshot.getValue());
+                            Log.d(TAG, "asdasdas" + dataSnapshot.getValue());
                             BankAccount bankAccount = dataSnapshot.getValue(BankAccount.class);
                             accountsList.add(bankAccount);
                             adapter.notifyDataSetChanged();
 
-                            Log.d("OVERVIEW", "this is the array" + accountsList);
+                            Log.d(TAG, "this is the array" + accountsList);
 
                         }
 

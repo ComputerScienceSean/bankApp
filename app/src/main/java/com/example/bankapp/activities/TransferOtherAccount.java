@@ -94,8 +94,7 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
             transfer(accFrom, amount, false);
             transfer(accTo, amount, true);
 
-            Intent returnToMenu = new Intent(getApplicationContext(), AccountMenu.class);
-            startActivity(returnToMenu);
+
         } else {
             Toast.makeText(getApplicationContext(), "You can't transfer money between the same account", Toast.LENGTH_LONG).show();
         }
@@ -129,7 +128,8 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     DatabaseReference bankaccounts = database.getReference("bankaccounts/" + data.getKey());
-                    Log.d("test", data.getKey());
+                    Log.d(TAG, data.getKey());
+                    Log.d(TAG, "" + data.getValue());
                     bankaccounts.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -137,7 +137,7 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
                             accounts.add(bankAccount);
                             adapter.notifyDataSetChanged();
 
-                            Log.d("test", "fdfd" + accounts);
+                            Log.d(TAG, "ACCOUNTS" + accounts);
                         }
 
                         @Override
@@ -146,7 +146,7 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
                         }
                     });
                 }
-                Log.d("test", "" + accounts);
+                Log.d(TAG, "" + accounts);
                 adapter.notifyDataSetChanged();
             }
 

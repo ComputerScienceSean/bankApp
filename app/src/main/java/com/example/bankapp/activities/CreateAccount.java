@@ -28,7 +28,6 @@ public class CreateAccount extends AppCompatActivity {
     private FirebaseDatabase database;
     private Spinner accountToBeCreated;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,14 +54,16 @@ public class CreateAccount extends AppCompatActivity {
 
     private void createAccounts(String next, String cpr) {
 
+        // TODO: You can only create one new account after program gets null in the checkSpinner ref
 
-        //Some problem with the if statement, dont know why
-        DatabaseReference checkSpinner = database.getReference("userbankaccounts/" + cpr);
+        DatabaseReference checkSpinner = database.getReference("usersbankaccounts/" + cpr);
         checkSpinner.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()){
-                    if (!data.child(accountToBeCreated.getSelectedItem().toString().trim()).exists()){
+
+                    if (!data.child(accountToBeCreated.getSelectedItem().toString()).exists()){
 
                         Long nextNumber = Long.parseLong(next);
                         Log.d(TAG, "create accounts called"+ next +"    " + cpr);
@@ -110,7 +111,6 @@ public class CreateAccount extends AppCompatActivity {
 
     public void createAccountButton(View view){
         getNextNumber();
-
         Intent returnToMenu = new Intent(getApplicationContext(), AccountMenu.class);
         startActivity(returnToMenu);
     }
