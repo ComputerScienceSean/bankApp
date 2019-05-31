@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bankapp.R;
 import com.example.bankapp.activities.AccountMenu;
@@ -51,18 +52,11 @@ public class EasyIdDialog extends AppCompatDialogFragment {
 
 
         Random rnd = new Random();
-        List<Integer> easyIdList = new ArrayList<>();
-
-        for (int i = 0; i <= 100; i++) {
-            easyIdList.add(rnd.nextInt(9999));
-        }
-
         int randomNum = rnd.nextInt(9999);
-        this.showRandomId.setText(""+randomNum);
+        showRandomId.setText(""+randomNum);
 
 
         builder.setView(view)
-                .setMessage("RANDOM MSG :P")
                 .setNegativeButton("Cancel", ((DialogInterface dialog, int which) -> {
 
                 }))
@@ -70,8 +64,7 @@ public class EasyIdDialog extends AppCompatDialogFragment {
                     int randomId = Integer.parseInt(showRandomId.getText().toString());
                     int enterRandomId = Integer.parseInt(enteredRandomId.getText().toString());
                     listener.applyText(randomId, enterRandomId);
-                    TransferOtherAccount transferOtherAccount = new TransferOtherAccount();
-                    transferOtherAccount.transferMoney();
+                    checkEasyId();
 
                     Intent returnToMenu = new Intent(getContext(), AccountMenu.class);
                     startActivity(returnToMenu);
@@ -82,14 +75,22 @@ public class EasyIdDialog extends AppCompatDialogFragment {
     }
 
     public void init(View view) {
-        Random rnd = new Random();
-        this.showRandomId = view.findViewById(R.id.randomID);
-        this.enteredRandomId = view.findViewById(R.id.enteredRandomId);
-//        this.showRandomId.setText(""+rnd.nextInt(9999));
-
+        showRandomId = view.findViewById(R.id.randomID);
+        enteredRandomId = view.findViewById(R.id.enteredRandomId);
     }
 
     public interface DialogListener {
         void applyText(int showRandomId, int enteredRandomId);
+    }
+
+    public void checkEasyId(){
+        Log.d("hello", "shown id " + showRandomId.getText().toString() + "entered ID" + enteredRandomId.getText().toString());
+
+        if (showRandomId.getText().toString().equals(enteredRandomId.getText().toString())){
+            TransferOtherAccount transferOtherAccount = new TransferOtherAccount();
+            transferOtherAccount.transferMoney();
+        } else {
+            Toast.makeText(getContext(), "Your entered Easy ID is incorrect. No money has been transferred", Toast.LENGTH_LONG);
+        }
     }
 }

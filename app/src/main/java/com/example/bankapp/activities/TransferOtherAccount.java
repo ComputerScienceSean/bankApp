@@ -50,20 +50,18 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
 
 
 
-    public void transfer( String accountNumber,  Double amount,  Boolean add) {
+    public void transfer( String accountNumber,  Long amount,  Boolean add) {
         DatabaseReference dbref = database.getReference("bankaccounts");
         dbref.child(accountNumber).child("balance").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
-                    Double temp = dataSnapshot.getValue(Double.class);
+                    Long temp = dataSnapshot.getValue(Long.class);
                     if (amount > temp) {
                         Toast.makeText(getApplicationContext(), "You dont have enough money to do that!", Toast.LENGTH_LONG).show();
                     } else {
-
                         if (add) {
-
                             dbref.child(accountNumber).child("balance").setValue((temp + amount));
                         } else {
                             dbref.child(accountNumber).child("balance").setValue((temp - amount));
@@ -83,7 +81,8 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
 
 
     public void transferMoney() {
-        Double amount = Double.parseDouble(transferAmount.getText().toString());
+
+        Long amount = Long.parseLong(transferAmount.getText().toString());
 
         String accFrom = accountFrom.getSelectedItem().toString().substring(accountFrom.getSelectedItem().toString().lastIndexOf(" " ) + 1);
         String accTo = accountTo.getText().toString();
@@ -155,6 +154,8 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
             }
         });
     }
+
+
 
     @Override
     public void applyText(int showRandomId, int enteredRandomId) {
