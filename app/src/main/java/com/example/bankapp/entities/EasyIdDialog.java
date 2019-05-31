@@ -55,4 +55,41 @@ public class EasyIdDialog extends AppCompatDialogFragment {
 
         for (int i = 0; i <= 100; i++) {
             easyIdList.add(rnd.nextInt(9999));
-        }t
+        }
+
+        int randomNum = rnd.nextInt(9999);
+        this.showRandomId.setText(""+randomNum);
+
+
+        builder.setView(view)
+                .setMessage("RANDOM MSG :P")
+                .setNegativeButton("Cancel", ((DialogInterface dialog, int which) -> {
+
+                }))
+                .setPositiveButton("OK", ((DialogInterface dialog, int which) -> {
+                    int randomId = Integer.parseInt(showRandomId.getText().toString());
+                    int enterRandomId = Integer.parseInt(enteredRandomId.getText().toString());
+                    listener.applyText(randomId, enterRandomId);
+                    TransferOtherAccount transferOtherAccount = new TransferOtherAccount();
+                    transferOtherAccount.transferMoney();
+
+                    Intent returnToMenu = new Intent(getContext(), AccountMenu.class);
+                    startActivity(returnToMenu);
+                }));
+
+
+        return builder.create();
+    }
+
+    public void init(View view) {
+        Random rnd = new Random();
+        this.showRandomId = view.findViewById(R.id.randomID);
+        this.enteredRandomId = view.findViewById(R.id.enteredRandomId);
+//        this.showRandomId.setText(""+rnd.nextInt(9999));
+
+    }
+
+    public interface DialogListener {
+        void applyText(int showRandomId, int enteredRandomId);
+    }
+}
