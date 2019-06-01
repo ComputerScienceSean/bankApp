@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.CreateAccount"></activity>
+        <activity android:name=".activities.PayBills"></activity>
+        <activity android:name=".activities.CreateAccount" />
         <activity android:name=".activities.ShowAccount" />
         <activity android:name=".activities.ResetPassword" />
         <activity android:name=".activities.TransferOtherAccount" />
