@@ -57,8 +57,6 @@ public class CreateAccount extends AppCompatActivity {
 
     private void createAccounts(String next, String cpr) {
 
-        // TODO: You can only create one new account, after program gets null in the checkSpinner ref
-
         DatabaseReference checkSpinner = database.getReference("usersbankaccounts/" + cpr);
         Log.d(TAG, ""+checkSpinner);
         checkSpinner.addListenerForSingleValueEvent(new ValueEventListener() {
