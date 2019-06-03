@@ -45,7 +45,6 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
         setContentView(R.layout.activity_transfer_other_account);
         init();
         loadAccounts();
-
     }
 
 
