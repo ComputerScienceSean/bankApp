@@ -7,6 +7,22 @@
     android:background="@color/background"
     tools:context=".activities.AccountMenu">
 
+    <ImageView
+        android:id="@+id/logoutButton2"
+        android:layout_width="87dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:onClick="logout"
+        app:layout_constraintEnd_toStartOf="@+id/accountOverviewTitle"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_exit_to_app_black_logout" />
+
     <Button
         android:id="@+id/transferOtherAccButton3"
         style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"

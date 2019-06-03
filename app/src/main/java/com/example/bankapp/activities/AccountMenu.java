@@ -23,6 +23,11 @@ public class AccountMenu extends AppCompatActivity {
 
     }
 
+    public void logout(View view){
+        Intent logout = new Intent(getApplicationContext(), Login.class);
+        startActivity(logout);
+    }
+
     public void seeAccounts(View view){
         Intent seeAccounts = new Intent(getApplicationContext(), OverviewActivity.class);
         seeAccounts.putExtra("CPR", userCPR);
