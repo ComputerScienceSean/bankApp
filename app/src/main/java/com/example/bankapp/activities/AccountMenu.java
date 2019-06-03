@@ -3,6 +3,7 @@ package com.example.bankapp.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,8 +24,6 @@ public class AccountMenu extends AppCompatActivity {
     }
 
     public void seeAccounts(View view){
-
-
         Intent seeAccounts = new Intent(getApplicationContext(), OverviewActivity.class);
         seeAccounts.putExtra("CPR", userCPR);
         startActivity(seeAccounts);
@@ -71,6 +70,7 @@ public class AccountMenu extends AppCompatActivity {
         this.resetPassButton = findViewById(R.id.resetPassButton);
         Intent getIntent = getIntent();
         this.userCPR = getIntent.getStringExtra("CPR");
+        Log.d("CREATEACTIVITY", "MENU CPR _>"+userCPR);
 
     }
 }

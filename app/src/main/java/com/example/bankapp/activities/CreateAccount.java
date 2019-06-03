@@ -27,6 +27,7 @@ public class CreateAccount extends AppCompatActivity {
     public static final String TAG = "CREATEACTIVITY";
     private FirebaseDatabase database;
     private Spinner accountToBeCreated;
+    String userCPR = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +50,17 @@ public class CreateAccount extends AppCompatActivity {
     public void init(){
         this.accountToBeCreated = findViewById(R.id.accountToBeCreated);
         this.database = FirebaseDatabase.getInstance();
+        Intent getIntent = getIntent();
+        userCPR = getIntent.getStringExtra("CPR");
     }
 
 
     private void createAccounts(String next, String cpr) {
 
-        // TODO: You can only create one new account after program gets null in the checkSpinner ref
+        // TODO: You can only create one new account, after program gets null in the checkSpinner ref
 
         DatabaseReference checkSpinner = database.getReference("usersbankaccounts/" + cpr);
+        Log.d(TAG, ""+checkSpinner);
         checkSpinner.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -66,7 +70,7 @@ public class CreateAccount extends AppCompatActivity {
                     if (!data.child(accountToBeCreated.getSelectedItem().toString()).exists()){
 
                         Long nextNumber = Long.parseLong(next);
-                        Log.d(TAG, "create accounts called"+ next +"    " + cpr);
+                        Log.d(TAG, "create accounts called "+ next +"   71 cpr_> " + cpr);
                         DatabaseReference ref = database.getReference("bankaccounts/");
 
                         BankAccount createdAccont = new BankAccount(accountToBeCreated.getSelectedItem().toString(), 100, "" + (nextNumber + 1));
@@ -94,8 +98,9 @@ public class CreateAccount extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String next = dataSnapshot.getValue(String.class);
-                Intent getIntent = getIntent();
-                createAccounts(next, getIntent.getStringExtra("CPR"));
+
+                Log.d(TAG, "1. user cpr " + userCPR);
+                createAccounts(next, userCPR);
                 Long nextAccNumber = Long.parseLong(next);
                 getNext.setValue("" + (nextAccNumber + 1));
 
@@ -110,8 +115,11 @@ public class CreateAccount extends AppCompatActivity {
 
 
     public void createAccountButton(View view){
+
         getNextNumber();
         Intent returnToMenu = new Intent(getApplicationContext(), AccountMenu.class);
+        Log.d(TAG, "user cpr --> "+userCPR);
+        returnToMenu.putExtra("CPR", userCPR);
         startActivity(returnToMenu);
     }
 
