@@ -49,8 +49,7 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
     }
 
 
-
-    public void transfer( String accountNumber,  Long amount,  Boolean add) {
+    public void transfer(String accountNumber, Long amount, Boolean add) {
         DatabaseReference dbref = database.getReference("bankaccounts");
         dbref.child(accountNumber).child("balance").addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -58,7 +57,7 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
                     Long temp = dataSnapshot.getValue(Long.class);
-                    if (amount > temp) {
+                    if (amount > temp && !add) {
                         Toast.makeText(getApplicationContext(), "You dont have enough money to do that!", Toast.LENGTH_LONG).show();
                     } else {
                         if (add) {
@@ -84,7 +83,7 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
 
         Long amount = Long.parseLong(transferAmount.getText().toString());
 
-        String accFrom = accountFrom.getSelectedItem().toString().substring(accountFrom.getSelectedItem().toString().lastIndexOf(" " ) + 1);
+        String accFrom = accountFrom.getSelectedItem().toString().substring(accountFrom.getSelectedItem().toString().lastIndexOf(" ") + 1);
         String accTo = accountTo.getText().toString();
 
         Log.d(TAG, "*" + accFrom + "*");
@@ -100,7 +99,7 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
     }
 
 
-    public void init () {
+    public void init() {
         this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, accounts);
         this.accountFrom = findViewById(R.id.transferFromSpinner);
         this.accountTo = findViewById(R.id.accountnumberRecipient);
@@ -110,14 +109,13 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
         this.transferButton = findViewById(R.id.transferOtherAccButton3);
     }
 
-    public void openDialog(View view){
+    public void openDialog(View view) {
         EasyIdDialog easyIdDialog = new EasyIdDialog();
         easyIdDialog.show(getSupportFragmentManager(), "easyID Dialog");
     }
 
 
-
-    public void loadAccounts () {
+    public void loadAccounts() {
         Intent getIntent = getIntent();
         String userCPR = getIntent.getStringExtra("CPR");
         DatabaseReference dbref = database.getReference("usersbankaccounts/" + userCPR);
@@ -156,10 +154,10 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
     }
 
 
-
     @Override
     public void applyText(int showRandomId, int enteredRandomId) {
         shownRandomId = showRandomId;
         enteredeRandomId = enteredRandomId;
+        transferMoney();
     }
 }

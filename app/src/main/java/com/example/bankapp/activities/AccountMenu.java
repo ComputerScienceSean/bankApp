@@ -48,12 +48,13 @@ public class AccountMenu extends AppCompatActivity {
         setCreateNewAccButton.putExtra("CPR", userCPR);
         startActivity(setCreateNewAccButton);
     }
-/*
+
     public void setPayBillsButton(View view){
         Intent setPayBillsButton = new Intent(getApplicationContext(), PayBills.class);
+        setPayBillsButton.putExtra("CPR", userCPR);
         startActivity(setPayBillsButton);
     }
-*/
+
     public void setResetPassButton(View view){
         Intent setResetPassButton = new Intent(getApplicationContext(), ResetPassword.class);
         setResetPassButton.putExtra("CPR", userCPR);

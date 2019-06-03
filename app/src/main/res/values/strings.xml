@@ -41,4 +41,5 @@
     <string name="go_back">go back</string>
     <string name="easy_id">Easy ID</string>
     <string name="please_enter_the_code_below_to_confirm_you_want_to_transfer_the_money_to_an_external_bank_account">Please enter the code below to confirm you want to transfer the money to an external bank account:</string>
+    <string name="numbers_from_the_payment_form">Numbers from the payment form</string>
 </resources>

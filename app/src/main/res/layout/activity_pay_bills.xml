@@ -4,6 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".activities.PayBills">
 
+    <Button
+        android:id="@+id/payBillButton"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="162dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/contrast_background"
+        android:text="@string/pay_bills"
+        android:textColor="#FFFFFF"
+        android:typeface="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentNumber"
+        tools:targetApi="lollipop" />
+
+    <EditText
+        android:id="@+id/paymentNumber"
+        android:layout_width="313dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="89dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/numbers_from_the_payment_form"
+        android:inputType="number|textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:typeface="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferFromSpinner"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/transferAmount"
+        android:layout_width="238dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="104dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/choose_transfer_amount"
+        android:inputType="number|textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:typeface="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payBillsTitle"
+        tools:targetApi="o" />
+
+    <Spinner
+        android:id="@+id/transferFromSpinner"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="382dp"
+        android:layout_height="45dp"
+        android:dropDownSelector="@android:color/white"
+        android:spinnerMode="dropdown"
+        android:textColor="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferFromTitle" />
+
+    <TextView
+        android:id="@+id/transferFromTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="51dp"
+        android:text="@string/transfer_from"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferAmount" />
+
+    <TextView
+        android:id="@+id/payBillsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/pay_bills"
+        android:textColor="#F9FAF9"
+        android:textSize="24sp"
+        app:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

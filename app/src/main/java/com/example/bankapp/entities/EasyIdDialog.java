@@ -18,9 +18,6 @@ import com.example.bankapp.R;
 import com.example.bankapp.activities.AccountMenu;
 import com.example.bankapp.activities.TransferOtherAccount;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class EasyIdDialog extends AppCompatDialogFragment {
@@ -63,12 +60,11 @@ public class EasyIdDialog extends AppCompatDialogFragment {
                 .setPositiveButton("OK", ((DialogInterface dialog, int which) -> {
                     int randomId = Integer.parseInt(showRandomId.getText().toString());
                     int enterRandomId = Integer.parseInt(enteredRandomId.getText().toString());
-                    listener.applyText(randomId, enterRandomId);
-                    checkEasyId();
+                    checkEasyId(randomId, enterRandomId);
 
-                    Intent returnToMenu = new Intent(getContext(), AccountMenu.class);
-                    startActivity(returnToMenu);
-                }));
+        Intent returnToMenu = new Intent(getContext(), AccountMenu.class);
+        startActivity(returnToMenu);
+    }));
 
 
         return builder.create();
@@ -83,14 +79,13 @@ public class EasyIdDialog extends AppCompatDialogFragment {
         void applyText(int showRandomId, int enteredRandomId);
     }
 
-    public void checkEasyId(){
+    public void checkEasyId(int randomId, int enterRandomId){
         Log.d("hello", "shown id " + showRandomId.getText().toString() + "entered ID" + enteredRandomId.getText().toString());
 
         if (showRandomId.getText().toString().equals(enteredRandomId.getText().toString())){
-            TransferOtherAccount transferOtherAccount = new TransferOtherAccount();
-            transferOtherAccount.transferMoney();
+            listener.applyText(randomId, enterRandomId);
         } else {
-            Toast.makeText(getContext(), "Your entered Easy ID is incorrect. No money has been transferred", Toast.LENGTH_LONG);
+            Toast.makeText(getContext(), "Your entered Easy ID is incorrect. No money has been transferred", Toast.LENGTH_LONG).show();
         }
     }
 }
