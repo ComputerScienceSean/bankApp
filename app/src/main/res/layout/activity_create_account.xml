@@ -7,6 +7,21 @@
     android:background="@color/background"
     tools:context=".activities.CreateAccount">
 
+    <ImageView
+        android:id="@+id/backButton5"
+        android:layout_width="63dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="goBack"
+        app:layout_constraintEnd_toStartOf="@+id/createAccountTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp_back" />
+
     <Button
         android:id="@+id/createAccountButton"
         style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
@@ -15,7 +30,7 @@
         android:layout_marginTop="94dp"
         android:background="@drawable/contrast_background"
         android:onClick="createAccountButton"
-        android:text="create account"
+        android:text="@string/create_account"
         android:textColor="#FFFFFF"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +59,7 @@
         android:layout_width="343dp"
         android:layout_height="66dp"
         android:layout_marginTop="92dp"
-        android:text="What kind of account would you like to create?"
+        android:text="@string/what_kind_of_account_would_you_like_to_create"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         app:fontFamily="serif"
@@ -56,7 +71,7 @@
         android:id="@+id/createAccountTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="48dp"
         android:text="@string/create_a_new_account"
         android:textColor="@android:color/white"
         android:textSize="24sp"

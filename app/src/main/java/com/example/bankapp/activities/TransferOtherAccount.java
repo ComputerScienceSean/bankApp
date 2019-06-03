@@ -47,6 +47,9 @@ public class TransferOtherAccount extends AppCompatActivity implements EasyIdDia
         loadAccounts();
     }
 
+    public void goBack(View view){
+        finish();
+    }
 
     public void transfer(String accountNumber, Long amount, Boolean add) {
         DatabaseReference dbref = database.getReference("bankaccounts");

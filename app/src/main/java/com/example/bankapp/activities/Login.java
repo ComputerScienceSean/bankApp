@@ -37,6 +37,7 @@ public class Login extends AppCompatActivity {
     public void registerIntent(View view){
         Intent register = new Intent(this, RegisterUser.class);
         startActivity(register);
+
     }
 
     public void login(View view){
@@ -49,6 +50,7 @@ public class Login extends AppCompatActivity {
                         Intent login = new Intent(getApplicationContext(), AccountMenu.class);
                         login.putExtra("CPR", cpr.getText().toString());
                         startActivity(login);
+
                     } else {
                         Toast.makeText(getApplicationContext(), "Incorrect login credentials, Try again", Toast.LENGTH_LONG).show();
 

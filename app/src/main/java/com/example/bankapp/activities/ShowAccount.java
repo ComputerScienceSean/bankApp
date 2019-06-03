@@ -13,7 +13,6 @@ import com.example.bankapp.entities.BankAccount;
 public class ShowAccount extends AppCompatActivity {
 
     private TextView balance;
-    private Button returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +24,10 @@ public class ShowAccount extends AppCompatActivity {
 
 
         this.balance = findViewById(R.id.balance);
-        this.returnButton = findViewById(R.id.returnButton);
         balance.setText(""+bankAccount.getBalance());
     }
 
     public void goBack(View view){
-        Intent goBackIntent = new Intent(getApplicationContext(), AccountMenu.class);
-        startActivity(goBackIntent);
+        finish();
     }
 }

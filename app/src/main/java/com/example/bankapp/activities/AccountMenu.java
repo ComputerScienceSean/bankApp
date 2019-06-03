@@ -27,13 +27,13 @@ public class AccountMenu extends AppCompatActivity {
         Intent seeAccounts = new Intent(getApplicationContext(), OverviewActivity.class);
         seeAccounts.putExtra("CPR", userCPR);
         startActivity(seeAccounts);
-
     }
 
     public void setTransferOwnAccButton(View view){
         Intent setTransferOwnAccButton = new Intent(getApplicationContext(), TransferOwnAccount.class);
         setTransferOwnAccButton.putExtra("CPR", userCPR);
         startActivity(setTransferOwnAccButton);
+
     }
 
     public void setTransferOtherAccButton(View view){

@@ -45,6 +45,10 @@ public class PayBills extends AppCompatActivity implements EasyIdDialog.DialogLi
         loadAccounts();
     }
 
+    public void goBack(View view){
+        finish();
+    }
+
     public void init(){
         this.adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, accounts);
         this.accountFrom = findViewById(R.id.transferFromSpinner);
@@ -151,9 +155,11 @@ public class PayBills extends AppCompatActivity implements EasyIdDialog.DialogLi
             DatabaseReference autoPayreference = database.getReference("autopaymentforms/");
             AutoPay autoPay = new AutoPay(amount, accFrom, payToNumber, "date");
             autoPayreference.push().setValue(autoPay);
+
         } else if(!accountFrom.getSelectedItem().toString().equals(paymentNumber.toString()) && !autoPay.isChecked()) {
             transfer(accFrom, amount, false);
             transfer(payToNumber, amount, true);
+
         } else {
             Toast.makeText(getApplicationContext(), "You need to enter the number from your payment form, not an account", Toast.LENGTH_LONG).show();
         }

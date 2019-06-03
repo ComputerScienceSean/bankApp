@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.example.bankapp.entities.BankAccount;
 import com.example.bankapp.entities.OverviewAdapter;
@@ -41,6 +42,10 @@ public class OverviewActivity extends AppCompatActivity {
         loadAccounts();
         adapter.notifyDataSetChanged();
 
+    }
+
+    public void goBack(View view){
+        finish();
     }
 
     public void loadAccounts() {

@@ -37,6 +37,10 @@ public class CreateAccount extends AppCompatActivity {
         loadAccounts();
     }
 
+    public void goBack(View view){
+        finish();
+    }
+
     public void loadAccounts(){
         ArrayList<String> accounts = new ArrayList<>();
         accounts.add("Savings Account");

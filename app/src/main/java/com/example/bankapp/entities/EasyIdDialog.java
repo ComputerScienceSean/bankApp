@@ -50,7 +50,7 @@ public class EasyIdDialog extends AppCompatDialogFragment {
 
         Random rnd = new Random();
         int randomNum = rnd.nextInt(9999);
-        showRandomId.setText(""+randomNum);
+        showRandomId.setText("" + randomNum);
 
 
         builder.setView(view)
@@ -62,11 +62,9 @@ public class EasyIdDialog extends AppCompatDialogFragment {
                     int enterRandomId = Integer.parseInt(enteredRandomId.getText().toString());
                     checkEasyId(randomId, enterRandomId);
 
-        Intent returnToMenu = new Intent(getContext(), AccountMenu.class);
-        startActivity(returnToMenu);
-    }));
-
-
+                    Intent returnToMenu = new Intent(getContext(), AccountMenu.class);
+                    startActivity(returnToMenu);
+                }));
         return builder.create();
     }
 
@@ -79,13 +77,14 @@ public class EasyIdDialog extends AppCompatDialogFragment {
         void applyText(int showRandomId, int enteredRandomId);
     }
 
-    public void checkEasyId(int randomId, int enterRandomId){
+    public void checkEasyId(int randomId, int enterRandomId) {
         Log.d("hello", "shown id " + showRandomId.getText().toString() + "entered ID" + enteredRandomId.getText().toString());
 
-        if (showRandomId.getText().toString().equals(enteredRandomId.getText().toString())){
+        if (showRandomId.getText().toString().equals(enteredRandomId.getText().toString())) {
             listener.applyText(randomId, enterRandomId);
         } else {
             Toast.makeText(getContext(), "Your entered Easy ID is incorrect. No money has been transferred", Toast.LENGTH_LONG).show();
+            return;
         }
     }
 }

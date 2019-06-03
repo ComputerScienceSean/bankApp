@@ -30,14 +30,17 @@ public class ResetPassword extends AppCompatActivity {
         }
     }
 
+    public void goBack(View view){
+        finish();
+    }
+
     public void updatePassword(View view){
         if(password.getText().toString().equals(passwordConfirm.getText().toString()) && password.getText().toString().length() >= 6){
             Intent getIntent = getIntent();
             String userCPR = getIntent.getStringExtra("CPR");
             DatabaseReference dbref = database.getReference("users/" + userCPR + "/password");
             dbref.setValue(passwordConfirm.getText().toString());
-            Intent returnToMenu = new Intent(getApplicationContext(), AccountMenu.class);
-            startActivity(returnToMenu);
+            finish();
 
         } else {
             Toast.makeText(getApplicationContext(), "The password is either too short or doesn't match. It must be atleast 6 characters!", Toast.LENGTH_LONG).show();

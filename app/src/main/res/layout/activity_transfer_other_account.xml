@@ -7,6 +7,19 @@
     android:background="@color/background"
     tools:context=".activities.TransferOtherAccount">
 
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="63dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="goBack"
+        app:layout_constraintEnd_toStartOf="@+id/transferTitle2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp_back" />
+
     <TextView
         android:id="@+id/transferFromTitle"
         android:layout_width="wrap_content"
@@ -106,13 +119,12 @@
         android:id="@+id/transferTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:text="@string/transfer_money"
         android:textColor="#F9FAF9"
         android:textSize="24sp"
         app:fontFamily="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -89,8 +89,8 @@ public class RegisterUser extends AppCompatActivity {
                                     }
                                 });
 
-                                Intent accountOverviewIntent = new Intent(getApplicationContext(), AccountMenu.class);
-                                startActivity(accountOverviewIntent);
+                                Intent loginIntent = new Intent(getApplicationContext(), Login.class);
+                                startActivity(loginIntent);
                             } else{
                                 Toast.makeText(getApplicationContext(), "This CPR is already registered, sure you don't have an account already?", Toast.LENGTH_LONG);
                             }

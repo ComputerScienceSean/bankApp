@@ -7,6 +7,19 @@
     android:background="@color/background"
     tools:context=".activities.TransferOwnAccount">
 
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="63dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="goBack"
+        app:layout_constraintEnd_toStartOf="@+id/transferTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp_back" />
+
     <Button
         android:id="@+id/transferButton"
         style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
@@ -57,7 +70,7 @@
         android:id="@+id/transferTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:text="@string/transfer_money"
         android:textColor="#F9FAF9"
         android:textSize="24sp"
@@ -71,7 +84,7 @@
         android:id="@+id/transferAmount"
         android:layout_width="238dp"
         android:layout_height="47dp"
-        android:layout_marginTop="99dp"
+        android:layout_marginTop="72dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/choose_transfer_amount"
@@ -80,7 +93,7 @@
         android:textColorHint="#FFFFFF"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/transferTitle"
         tools:targetApi="o" />
