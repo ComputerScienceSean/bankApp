@@ -26,6 +26,19 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
+
+        if (savedInstanceState != null){
+            cpr.setText(savedInstanceState.getString("cpr"));
+            password.setText(savedInstanceState.getString("password"));
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("cpr", cpr.getText().toString());
+        outState.putString("password", password.getText().toString());
     }
 
     public void init() {
