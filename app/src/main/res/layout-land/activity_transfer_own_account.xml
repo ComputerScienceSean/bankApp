@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activities.TransferOwnAccount">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="63dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="goBack"
+        app:layout_constraintEnd_toStartOf="@+id/transferTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp_back" />
+
+    <Button
+        android:id="@+id/transferButton"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/contrast_background"
+        android:onClick="transferMoney"
+        android:text="@string/transfer"
+        android:textColor="#FFFFFF"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferToSpinner"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/transferToTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/transfer_to"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.814"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="168dp" />
+
+    <TextView
+        android:id="@+id/transferFromTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/transfer_from"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferAmount" />
+
+    <TextView
+        android:id="@+id/transferTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/transfer_money"
+        android:textColor="#F9FAF9"
+        android:textSize="24sp"
+        app:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/transferAmount"
+        android:layout_width="238dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/choose_transfer_amount"
+        android:inputType="number|textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:typeface="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferTitle"
+        tools:targetApi="o" />
+
+    <Spinner
+        android:id="@+id/transferFromSpinner"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="298dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:dropDownSelector="@android:color/white"
+        android:spinnerMode="dropdown"
+        android:textColor="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferFromTitle" />
+
+    <Spinner
+        android:id="@+id/transferToSpinner"
+        style="@style/Widget.AppCompat.Spinner"
+        android:layout_width="298dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.874"
+        app:layout_constraintStart_toEndOf="@+id/transferFromSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/transferToTitle" />
+</android.support.constraint.ConstraintLayout>
